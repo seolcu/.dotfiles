@@ -63,6 +63,7 @@
 }
 
 #tray,
+#custom-swaync,
 #pulseaudio,
 #idle_inhibitor,
 #power-profiles-daemon,
@@ -76,6 +77,15 @@
 #tray {
     margin: 3px 0px;
     border-radius: 1rem 0px 0px 1rem;
+}
+
+#custom-swaync {
+    color: @blue;
+    border-radius: 0px;
+}
+
+#custom-swaync.dnd {
+    color: @fg3;
 }
 
 #pulseaudio {
