@@ -99,7 +99,8 @@ sudo pacman -S --needed --noconfirm \
     xdg-user-dirs \
     xdg-user-dirs-gtk \
     avahi \
-    nss-mdns
+    nss-mdns \
+    fwupd
 
 # Install fonts
 echo "Installing fonts..."
