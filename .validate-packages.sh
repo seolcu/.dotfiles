@@ -5,116 +5,68 @@ set -euo pipefail
 echo "=== Package Availability Validation ==="
 echo ""
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INSTALL_SCRIPT="$SCRIPT_DIR/.install.sh"
+
+if [ ! -f "$INSTALL_SCRIPT" ]; then
+    echo "ERROR: .install.sh not found at $INSTALL_SCRIPT"
+    exit 1
+fi
+
 MISSING_PACMAN=()
 MISSING_AUR=()
 
-PACMAN_PACKAGES=(
-    base base-devel
-    linux linux-firmware
-    amd-ucode
-    efibootmgr
-    btrfs-progs
-    networkmanager
-    bluez bluez-utils blueberry
-    hyprland hyprpaper hypridle hyprlock hyprpolkitagent
-    xdg-desktop-portal-hyprland
-    waybar wofi swaync swayosd
-    qt5-wayland qt6-wayland
-    xorg-xwayland
-    kitty
-    starship
-    neovim
-    git github-cli
-    htop fastfetch
-    tree
-    fd ripgrep
-    less unzip
-    man-db man-pages
-    pipewire pipewire-alsa pipewire-pulse pipewire-jack
-    wireplumber libpulse
-    gst-plugin-pipewire
-    pavucontrol
-    mpv imv
-    nautilus
-    firefox-i18n-ko
-    evince
-    gnome-text-editor
-    gnome-keyring
-    obsidian
-    kdenlive
-    wl-clipboard cliphist
-    grim slurp
-    brightnessctl
-    network-manager-applet
-    power-profiles-daemon
-    nwg-look
-    pandoc-cli
-    snapper
-    sof-firmware
-    ly
-    zram-generator
-    tailscale
-    proton-vpn-gtk-app
-    xdg-user-dirs
-    xdg-user-dirs-gtk
-    avahi
-    nss-mdns
-    fwupd
-    ttf-jetbrains-mono-nerd
-    ttf-liberation
-    noto-fonts noto-fonts-cjk noto-fonts-emoji
-    gtk-engine-murrine
-    sassc
-    steam
-    gamemode lib32-gamemode
-    gamescope
-    qemu-full
-    libvirt
-    virt-manager
-    virt-viewer
-    dnsmasq
-    iptables-nft
-    dmidecode
-)
+echo "Extracting packages from .install.sh..."
 
-AUR_PACKAGES=(
-    kime-bin
-    yay-bin
-    localsend-bin
-    cbonsai
-    gamescope-session-steam-git
-    game-devices-udev
-    visual-studio-code-bin
-    slack-desktop
-    onlyoffice-bin
-    ente-auth-bin
-    opencode-bin
-    gemini-cli-bin
-)
+# Extract pacman packages
+PACMAN_PACKAGES=$(grep -A 100 'sudo pacman -S --needed --noconfirm' "$INSTALL_SCRIPT" | \
+    grep -v 'sudo pacman' | \
+    grep -v '^#' | \
+    grep -v 'echo' | \
+    sed '/^$/d' | \
+    sed 's/\\$//' | \
+    tr -s ' ' '\n' | \
+    grep -v '^$' | \
+    sort -u)
+
+# Extract AUR packages
+AUR_PACKAGES=$(grep -A 100 'yay -S --needed --noconfirm' "$INSTALL_SCRIPT" | \
+    grep -v 'yay -S' | \
+    grep -v '^#' | \
+    grep -v 'echo' | \
+    sed '/^$/d' | \
+    sed 's/\\$//' | \
+    tr -s ' ' '\n' | \
+    grep -v '^$' | \
+    sort -u)
 
 echo "Checking official repository packages..."
-for pkg in "${PACMAN_PACKAGES[@]}"; do
-    if ! pacman -Si "$pkg" &>/dev/null; then
-        MISSING_PACMAN+=("$pkg")
-        echo "  [MISSING] $pkg"
-    else
-        echo "  [OK] $pkg"
+while IFS= read -r pkg; do
+    if [ -n "$pkg" ]; then
+        if ! pacman -Si "$pkg" &>/dev/null; then
+            MISSING_PACMAN+=("$pkg")
+            echo "  [MISSING] $pkg"
+        else
+            echo "  [OK] $pkg"
+        fi
     fi
-done
+done <<< "$PACMAN_PACKAGES"
 
 echo ""
 echo "Checking AUR packages..."
 if ! command -v yay &>/dev/null; then
     echo "WARNING: yay not installed, skipping AUR package validation"
 else
-    for pkg in "${AUR_PACKAGES[@]}"; do
-        if ! yay -Si "$pkg" &>/dev/null; then
-            MISSING_AUR+=("$pkg")
-            echo "  [MISSING] $pkg"
-        else
-            echo "  [OK] $pkg"
+    while IFS= read -r pkg; do
+        if [ -n "$pkg" ]; then
+            if ! yay -Si "$pkg" &>/dev/null; then
+                MISSING_AUR+=("$pkg")
+                echo "  [MISSING] $pkg"
+            else
+                echo "  [OK] $pkg"
+            fi
         fi
-    done
+    done <<< "$AUR_PACKAGES"
 fi
 
 echo ""
