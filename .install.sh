@@ -96,7 +96,9 @@ sudo pacman -S --needed --noconfirm \
     tailscale \
     proton-vpn-gtk-app \
     xdg-user-dirs \
-    xdg-user-dirs-gtk
+    xdg-user-dirs-gtk \
+    avahi \
+    nss-mdns
 
 # Install fonts
 echo "Installing fonts..."
@@ -211,10 +213,14 @@ echo "Updating XDG user directories..."
 xdg-user-dirs-update
 xdg-user-dirs-gtk-update
 
+# Configure Avahi mDNS
+echo "Configuring Avahi mDNS..."
+sudo sed -i '/^hosts:/c\hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns' /etc/nsswitch.conf
+
 # Enable and start required services
 echo "Enabling services..."
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
-sudo systemctl enable NetworkManager bluetooth ly tailscaled libvirtd
+sudo systemctl enable NetworkManager bluetooth ly tailscaled libvirtd avahi-daemon
 
 echo ""
 echo "=== Installation Complete! ==="
