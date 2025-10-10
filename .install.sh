@@ -128,7 +128,6 @@ sudo pacman -S --needed --noconfirm \
     virt-manager \
     virt-viewer \
     dnsmasq \
-    iptables-nft \
     dmidecode
 
 # Install AUR packages
