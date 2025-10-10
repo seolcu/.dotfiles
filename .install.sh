@@ -175,6 +175,10 @@ echo "Checking out dotfiles..."
 # Source bashrc
 source ~/.bashrc
 
+# Configure ly display manager to use hidden log file
+echo "Configuring ly display manager..."
+sudo sed -i 's/^session_log = ly-session.log/session_log = .ly-session.log/' /etc/ly/config.ini
+
 # Enable and start required services
 echo "Enabling services..."
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
