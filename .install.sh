@@ -116,6 +116,17 @@ sudo pacman -S --needed --noconfirm \
     gamemode lib32-gamemode \
     gamescope
 
+# Install virtualization packages
+echo "Installing virtualization packages..."
+sudo pacman -S --needed --noconfirm \
+    qemu-full \
+    libvirt \
+    virt-manager \
+    virt-viewer \
+    dnsmasq \
+    iptables-nft \
+    dmidecode
+
 # Install AUR packages
 echo "Installing AUR packages..."
 yay -S --needed --noconfirm \
@@ -185,10 +196,14 @@ sudo tee /etc/sysctl.d/80-gamecompatibility.conf > /dev/null <<EOF
 vm.max_map_count = 2147483642
 EOF
 
+# Configure libvirt
+echo "Configuring libvirt..."
+sudo usermod -aG libvirt $USER
+
 # Enable and start required services
 echo "Enabling services..."
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
-sudo systemctl enable NetworkManager bluetooth ly tailscaled
+sudo systemctl enable NetworkManager bluetooth ly tailscaled libvirtd
 
 echo ""
 echo "=== Installation Complete! ==="
