@@ -21,6 +21,7 @@ This script will:
   - **Desktop Environment**: Hyprland, Waybar, Wofi, SwayNC
   - **Terminal**: Kitty with Starship prompt
   - **Editor**: Neovim (with [custom config](https://github.com/seolcu/nvim))
+  - **Input Method**: Fcitx5 with Korean (Hangul) support
   - **Audio**: PipeWire + WirePlumber
   - **Networking**: NetworkManager, Tailscale, Proton VPN, Avahi (mDNS)
   - **Bluetooth**: Bluez + Blueberry
@@ -64,11 +65,12 @@ After running the installation script:
 
 1. **Reboot** your system
 2. **Log in** via ly display manager and select Hyprland
-3. **Configure Tailscale**: `sudo tailscale up`
-4. **Configure Proton VPN** via GUI
-5. **Apply GTK theme**: Use `nwg-look` to select Gruvbox theme
-6. **Setup snapper** for Btrfs snapshots (if using Btrfs)
-7. **Update firmware**: `fwupdmgr update`
+3. **Configure Fcitx5**: Run `fcitx5-configtool` to add Korean (Hangul) input method
+4. **Configure Tailscale**: `sudo tailscale up`
+5. **Configure Proton VPN** via GUI
+6. **Apply GTK theme**: Use `nwg-look` to select Gruvbox theme
+7. **Setup snapper** for Btrfs snapshots (if using Btrfs)
+8. **Update firmware**: `fwupdmgr update`
 
 ## Troubleshooting
 
