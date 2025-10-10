@@ -17,8 +17,8 @@
         "custom/swaync",
         "pulseaudio",
         "idle_inhibitor",
-        "power-profiles-daemon",
         "backlight",
+        "power-profiles-daemon",
         "battery"
     ],
     // Modules configuration
