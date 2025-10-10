@@ -1,23 +1,14 @@
 #!/bin/bash
 
-set -euo pipefail
-
-LOGFILE="$HOME/install-$(date +%Y%m%d-%H%M%S).log"
-exec > >(tee -a "$LOGFILE") 2>&1
+set -e
 
 echo "=== Arch Linux + Hyprland Setup Script ==="
-echo "This script will install all required packages and set up your dotfiles"
-echo "Log file: $LOGFILE"
 echo ""
 
-# Check if running as root
 if [ "$EUID" -eq 0 ]; then 
-   echo "ERROR: Please don't run this script as root"
+   echo "Please don't run this script as root"
    exit 1
 fi
-
-# Error handler
-trap 'echo "ERROR: Installation failed at line $LINENO. Check $LOGFILE for details."; exit 1' ERR
 
 # Install yay if not present
 if ! command -v yay &> /dev/null; then
