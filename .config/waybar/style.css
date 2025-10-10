@@ -28,11 +28,12 @@
 #waybar {
     background: transparent;
     color: @fg;
+    margin: 8px;
 }
 
 #workspaces {
     border-radius: 1rem;
-    margin: 8px 3px 3px 8px;
+    margin: 0px;
     background-color: @bg2;
 }
 
@@ -54,7 +55,7 @@
 
 #clock {
     border-radius: 1rem;
-    margin: 8px 3px 3px 3px;
+    margin: 0px;
     background-color: @bg2;
     padding: 0.3rem 0.8rem;
     color: @fg;
@@ -69,11 +70,11 @@
 #battery {
     background-color: @bg2;
     padding: 0.3rem 0.8rem;
-    margin: 8px 0px 3px 0px;
+    margin: 0px;
 }
 
 #tray {
-    margin: 8px 0px 3px 0px;
+    margin: 0px;
     border-radius: 1rem;
 }
 
@@ -99,7 +100,7 @@
 #battery {
     color: @green;
     border-radius: 1rem;
-    margin: 8px 8px 3px 0px;
+    margin: 0px;
 }
 
 #battery.charging {
@@ -122,7 +123,7 @@
 #power-profiles-daemon {
     color: @blue;
     border-radius: 1rem;
-    margin: 8px 0px 3px 0px;
+    margin: 0px;
 }
 
 #power-profiles-daemon.performance {
