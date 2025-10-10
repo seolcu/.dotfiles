@@ -57,7 +57,8 @@ sudo pacman -S --needed --noconfirm \
     htop fastfetch \
     tree \
     fd ripgrep \
-    less unzip
+    less unzip \
+    man-db man-pages
 
 # Install audio and media
 echo "Installing audio and media packages..."
@@ -199,6 +200,7 @@ echo "Configuring gaming optimizations..."
 sudo tee /etc/sysctl.d/80-gamecompatibility.conf > /dev/null <<EOF
 vm.max_map_count = 2147483642
 EOF
+sudo sysctl --system
 
 # Configure libvirt
 echo "Configuring libvirt..."
