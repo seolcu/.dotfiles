@@ -130,10 +130,15 @@ sudo pacman -S --needed --noconfirm \
     dnsmasq \
     dmidecode
 
+# Install input method
+echo "Installing input method..."
+sudo pacman -S --needed --noconfirm \
+    fcitx5-hangul \
+    fcitx5-configtool
+
 # Install AUR packages
 echo "Installing AUR packages..."
 yay -S --needed --noconfirm \
-    kime-bin \
     yay-bin \
     localsend-bin \
     cbonsai \
@@ -172,7 +177,7 @@ fi
 
 # Backup existing files if they exist
 mkdir -p ~/.config-backup
-for file in .bashrc .config/hypr .config/waybar .config/kitty .config/kime .local/share/wallpapers; do
+for file in .bashrc .config/hypr .config/waybar .config/kitty .local/share/wallpapers; do
     if [ -e "$HOME/$file" ]; then
         echo "Backing up $file..."
         cp -r "$HOME/$file" ~/.config-backup/ 2>/dev/null || true
