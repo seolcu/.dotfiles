@@ -94,7 +94,9 @@ sudo pacman -S --needed --noconfirm \
     ly \
     zram-generator \
     tailscale \
-    proton-vpn-gtk-app
+    proton-vpn-gtk-app \
+    xdg-user-dirs \
+    xdg-user-dirs-gtk
 
 # Install fonts
 echo "Installing fonts..."
@@ -203,6 +205,11 @@ sudo usermod -aG libvirt $USER
 # Configure gamemode
 echo "Configuring gamemode..."
 sudo usermod -aG gamemode $USER
+
+# Update XDG user directories
+echo "Updating XDG user directories..."
+xdg-user-dirs-update
+xdg-user-dirs-gtk-update
 
 # Enable and start required services
 echo "Enabling services..."
