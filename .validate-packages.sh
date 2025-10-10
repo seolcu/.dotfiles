@@ -18,27 +18,30 @@ MISSING_AUR=()
 
 echo "Extracting packages from .install.sh..."
 
-# Extract pacman packages
-PACMAN_PACKAGES=$(grep -A 100 'sudo pacman -S --needed --noconfirm' "$INSTALL_SCRIPT" | \
+# Extract pacman packages - capture multi-line package lists
+PACMAN_PACKAGES=$(sed -n '/sudo pacman -S --needed --noconfirm \\/,/^[[:space:]]*$/p' "$INSTALL_SCRIPT" | \
     grep -v 'sudo pacman' | \
     grep -v '^#' | \
-    grep -v 'echo' | \
-    sed '/^$/d' | \
     sed 's/\\$//' | \
-    tr -s ' ' '\n' | \
+    tr -s ' \t' '\n' | \
     grep -v '^$' | \
     sort -u)
 
 # Extract AUR packages
-AUR_PACKAGES=$(grep -A 100 'yay -S --needed --noconfirm' "$INSTALL_SCRIPT" | \
+AUR_PACKAGES=$(sed -n '/yay -S --needed --noconfirm \\/,/^[[:space:]]*$/p' "$INSTALL_SCRIPT" | \
     grep -v 'yay -S' | \
     grep -v '^#' | \
-    grep -v 'echo' | \
-    sed '/^$/d' | \
     sed 's/\\$//' | \
-    tr -s ' ' '\n' | \
+    tr -s ' \t' '\n' | \
     grep -v '^$' | \
     sort -u)
+
+PACMAN_COUNT=$(echo "$PACMAN_PACKAGES" | grep -c '^' || true)
+AUR_COUNT=$(echo "$AUR_PACKAGES" | grep -c '^' || true)
+
+echo "Found $PACMAN_COUNT pacman packages"
+echo "Found $AUR_COUNT AUR packages"
+echo ""
 
 echo "Checking official repository packages..."
 while IFS= read -r pkg; do
