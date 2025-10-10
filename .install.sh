@@ -113,6 +113,11 @@ sudo pacman -S --needed --noconfirm \
     gtk-engine-murrine \
     sassc
 
+# Install Vulkan drivers (before Steam to avoid lib32-amdvlk auto-selection)
+echo "Installing Vulkan drivers..."
+sudo pacman -S --needed --noconfirm \
+    vulkan-radeon lib32-vulkan-radeon
+
 # Install gaming packages
 echo "Installing gaming packages..."
 sudo pacman -S --needed --noconfirm \
