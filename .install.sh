@@ -200,6 +200,10 @@ EOF
 echo "Configuring libvirt..."
 sudo usermod -aG libvirt $USER
 
+# Configure gamemode
+echo "Configuring gamemode..."
+sudo usermod -aG gamemode $USER
+
 # Enable and start required services
 echo "Enabling services..."
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
