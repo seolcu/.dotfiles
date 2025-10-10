@@ -189,6 +189,14 @@ echo "Checking out dotfiles..."
 # Configure dotfiles repo
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
 
+# Clone neovim configuration
+echo "Setting up neovim configuration..."
+if [ -d "$HOME/.config/nvim" ]; then
+    echo "Neovim config directory already exists, backing up..."
+    mv "$HOME/.config/nvim" "$HOME/.config-backup/nvim" 2>/dev/null || true
+fi
+git clone https://github.com/seolcu/nvim $HOME/.config/nvim
+
 # Source bashrc
 source ~/.bashrc
 
