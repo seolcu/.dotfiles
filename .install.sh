@@ -41,6 +41,7 @@ echo "Installing Hyprland and Wayland packages..."
 sudo pacman -S --needed --noconfirm \
     hyprland hyprpaper hypridle hyprlock hyprpolkitagent \
     xdg-desktop-portal-hyprland \
+    xdg-desktop-portal-gtk \
     waybar wofi swaync swayosd \
     qt5-wayland qt6-wayland \
     xorg-xwayland
