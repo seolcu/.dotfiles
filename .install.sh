@@ -179,6 +179,12 @@ source ~/.bashrc
 echo "Configuring ly display manager..."
 sudo sed -i 's/^session_log = ly-session.log/session_log = .ly-session.log/' /etc/ly/config.ini
 
+# Configure gaming optimizations
+echo "Configuring gaming optimizations..."
+sudo tee /etc/sysctl.d/80-gamecompatibility.conf > /dev/null <<EOF
+vm.max_map_count = 2147483642
+EOF
+
 # Enable and start required services
 echo "Enabling services..."
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
