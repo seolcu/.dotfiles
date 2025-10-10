@@ -19,46 +19,36 @@
 @define-color aqua     #689d6a;
 @define-color orange   #d65d0e;
 
-* {
-    font-family: JetBrainsMono Nerd Font Propo;
-    font-size: 14px;
-    min-height: 0;
-}
 
-#waybar {
-    background: transparent;
+#waybar { 
+    font-size: 14px;
+    font-family: JetBrainsMono Nerd Font Propo;
+    background-color: transparent;
     color: @fg;
-    margin: 8px;
 }
 
 #workspaces {
-    border-radius: 1rem;
-    margin: 0px;
-    background-color: @bg2;
+    padding: 0;
 }
 
 #workspaces button {
-    color: @fg;
-    border-radius: 1rem;
-    padding: 0.3rem;
+    background-color: @bg2;
+    border-radius: 5px;
+    margin: 10px 0px 0px 10px;
+    padding: 0;
+    border: 2px @bg2 solid;
 }
 
 #workspaces button.active {
     color: @blue;
-    border-radius: 1rem;
-}
-
-#workspaces button:hover {
-    color: @green;
-    border-radius: 1rem;
+    border: 2px @blue solid;
 }
 
 #clock {
-    border-radius: 1rem;
-    margin: 0px;
     background-color: @bg2;
-    padding: 0.3rem 0.8rem;
-    color: @fg;
+    border-radius: 5px;
+    margin: 10px 0px 0px 0px;
+    padding: 0 9px;
 }
 
 #tray,
@@ -69,38 +59,25 @@
 #backlight,
 #battery {
     background-color: @bg2;
-    padding: 0.3rem 0.8rem;
-    margin: 0px;
-}
-
-#tray {
-    margin: 0px;
-    border-radius: 1rem;
+    border-radius: 5px;
+    margin: 10px 10px 0px 0px;
+    padding: 0 9px;
 }
 
 #custom-swaync {
-    color: @blue;
-    border-radius: 1rem;
-}
-
-#custom-swaync.dnd {
-    color: @fg3;
+    color: @yellow;
 }
 
 #pulseaudio {
     color: @purple;
-    border-radius: 1rem;
 }
 
 #backlight {
-    color: @yellow;
-    border-radius: 1rem;
+    color: @fg5;
 }
 
 #battery {
     color: @green;
-    border-radius: 1rem;
-    margin: 0px;
 }
 
 #battery.charging {
@@ -112,18 +89,15 @@
 }
 
 #idle_inhibitor {
-    color: @aqua;
-    border-radius: 1rem;
+    color: @fg1;
 }
 
 #idle_inhibitor.activated {
-    color: @purple;
+    color: @red;
 }
 
 #power-profiles-daemon {
     color: @blue;
-    border-radius: 1rem;
-    margin: 0px;
 }
 
 #power-profiles-daemon.performance {
