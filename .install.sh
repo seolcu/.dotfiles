@@ -154,9 +154,10 @@ yay -S --needed --noconfirm \
 # Install Gruvbox GTK Theme
 echo "Installing Gruvbox GTK Theme..."
 cd /tmp
+rm -rf Gruvbox-GTK-Theme
 git clone https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme.git
-cd Gruvbox-GTK-Theme
-./install.sh -t all -l
+cd Gruvbox-GTK-Theme/themes
+./install.sh
 cd ~
 
 # Clone dotfiles repository
