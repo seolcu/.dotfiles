@@ -28,7 +28,7 @@
 #waybar {
     background: transparent;
     color: @fg;
-    margin: 3px 0px;
+    margin: 8px 8px;
 }
 
 #workspaces {
@@ -76,12 +76,12 @@
 
 #tray {
     margin: 3px 0px;
-    border-radius: 1rem 0px 0px 1rem;
+    border-radius: 1rem;
 }
 
 #custom-swaync {
     color: @blue;
-    border-radius: 0px;
+    border-radius: 1rem;
 }
 
 #custom-swaync.dnd {
@@ -90,17 +90,17 @@
 
 #pulseaudio {
     color: @purple;
-    border-radius: 0px;
+    border-radius: 1rem;
 }
 
 #backlight {
     color: @yellow;
-    border-radius: 0px;
+    border-radius: 1rem;
 }
 
 #battery {
     color: @green;
-    border-radius: 0px 1rem 1rem 0px;
+    border-radius: 1rem;
     margin: 3px 0.5rem 3px 0px;
 }
 
@@ -114,7 +114,7 @@
 
 #idle_inhibitor {
     color: @aqua;
-    border-radius: 0px;
+    border-radius: 1rem;
 }
 
 #idle_inhibitor.activated {
@@ -123,7 +123,7 @@
 
 #power-profiles-daemon {
     color: @blue;
-    border-radius: 0px;
+    border-radius: 1rem;
     margin: 3px 0px;
 }
 
