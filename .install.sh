@@ -89,6 +89,7 @@ sudo pacman -S --needed --noconfirm \
     power-profiles-daemon \
     nwg-look \
     pandoc-cli \
+    hugo \
     snapper \
     sof-firmware \
     ly \
