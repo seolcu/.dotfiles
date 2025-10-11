@@ -77,7 +77,9 @@ sudo pacman -S --needed --noconfirm \
     gnome-text-editor \
     gnome-keyring \
     obsidian \
-    kdenlive
+    kdenlive \
+    rpi-imager \
+    fragments
 
 # Install utilities and tools
 echo "Installing utilities and tools..."
