@@ -73,7 +73,7 @@ echo "Installing GUI applications..."
 sudo pacman -S --needed --noconfirm \
     nautilus \
     firefox-i18n-ko \
-    evince \
+    papers \
     gnome-text-editor \
     gnome-keyring \
     obsidian \
