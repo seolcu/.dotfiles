@@ -11,4 +11,6 @@ PS1='[\u@\h \W]\$ '
 
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
 eval "$(starship init bash)"
