@@ -79,7 +79,8 @@ sudo pacman -S --needed --noconfirm \
     obsidian \
     kdenlive \
     rpi-imager \
-    fragments
+    fragments \
+    gnome-disk-utility
 
 # Install utilities and tools
 echo "Installing utilities and tools..."
