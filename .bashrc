@@ -14,3 +14,4 @@ alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 eval "$(starship init bash)"
+. "$HOME/.cargo/env"
